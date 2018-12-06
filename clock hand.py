@@ -15,6 +15,7 @@ HEIGHT = 400
 
 # Global variables
 hand_length = 150
+center = 0, 0
 
 end_points = []
 num_of_points = None
@@ -45,15 +46,24 @@ num_of_points = len(end_points)
 print(num_of_points)
 
 
+def draw():
+    # Draw a white hub
+    screen.draw.filled_circle(offset(center), 10, 'white')
+
+
 def update():
     global counter
     screen.clear()
 
     # print(counter)
 
-    screen.draw.line(offset((0, 0)),
+    # Draw a red line with a red dot at the end of it
+    screen.draw.line(offset(center),
                      offset(end_points[counter]), 'red')
-    screen.draw.text(str(counter), (10, 10))
+    screen.draw.filled_circle(offset(end_points[counter]), 7, 'red')
+
+    # Update the display of the number of seconds
+    screen.draw.text(str(counter), (WIDTH / 2, 10))
 
     counter += 1
 

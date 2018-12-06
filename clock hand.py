@@ -15,7 +15,10 @@ HEIGHT = 400
 
 # Global variables
 hand_length = 150
-center = 0, 0
+# print('hand_length', type(hand_length))
+
+center = (0, 0)
+# print('center', type(center))
 
 end_points = []
 num_of_points = None
@@ -39,7 +42,7 @@ for angle in range(90, -270, -6):
           .format(angle, x, y))
 
     # Add the end point coordinate to the list
-    end_point = x, y
+    end_point = (x, y)
     end_points.append(end_point)
 
 num_of_points = len(end_points)
@@ -60,10 +63,11 @@ def update():
     # Draw a red line with a red dot at the end of it
     screen.draw.line(offset(center),
                      offset(end_points[counter]), 'red')
-    screen.draw.filled_circle(offset(end_points[counter]), 7, 'red')
+    screen.draw.filled_circle(offset(end_points[counter]),
+                              7, 'red')
 
     # Update the display of the number of seconds
-    screen.draw.text(str(counter), (WIDTH / 2, 10))
+    screen.draw.text(str(counter), (WIDTH / 2 - 10, 10))
 
     counter += 1
 

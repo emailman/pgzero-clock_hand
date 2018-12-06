@@ -35,7 +35,7 @@ def offset(point):
 # Divide the circle into 60 pieces (360 / 6)
 # Make sure the hand goes clockwise
 for angle in range(90, -270, -6):
-    # A little trig goes a long way
+    # A little trig goes a long way to find the end point
     x = cos(angle * pi / 180) * hand_length
     y = sin(angle * pi / 180) * hand_length
     print('{:4d} degrees: x = {:6.2f}  y= {:6.2f}'

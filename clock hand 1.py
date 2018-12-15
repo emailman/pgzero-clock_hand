@@ -15,10 +15,8 @@ HEIGHT = 400
 
 # Global variables
 hand_length = 150
-# print('hand_length', type(hand_length))
 
 center = (0, 0)
-# print('center', type(center))
 
 end_points = []
 num_of_points = None
@@ -46,7 +44,6 @@ for angle in range(90, -270, -6):
     end_points.append(end_point)
 
 num_of_points = len(end_points)
-print(num_of_points)
 
 
 def draw():

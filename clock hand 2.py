@@ -78,17 +78,21 @@ def update():
     time_display = '{:02d} : {:02d}'.format(minute_counter, second_counter)
     screen.draw.text(time_display, (WIDTH / 2 - 20, 10))
 
+    # Tic
     second_counter += 1
 
-    # Loop the second and minute counters back to the top of the list
+    # Handle the second and minute counters
+    # Time for the next minute?
     if second_counter == num_of_points:
         second_counter = 0
         minute_counter += 1
+
+        # Time for the next second
         if minute_counter == num_of_points:
             minute_counter = 0
 
     # Execute once per second
-    sleep(.05)
+    sleep(1)
 
 
 pgzrun.go()

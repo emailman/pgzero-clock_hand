@@ -74,17 +74,21 @@ def update():
     screen.draw.line(offset(center),
                      offset(end_points[minute_counter]), minute_hand_color)
 
-    # Update the display of the number of seconds
-    screen.draw.text(str(second_counter), (WIDTH / 2 - 10, 10))
+    # Update the display of the number of minutes and seconds
+    time_display = '{:02d} : {:02d}'.format(minute_counter, second_counter)
+    screen.draw.text(time_display, (WIDTH / 2 - 20, 10))
 
     second_counter += 1
 
-    # Loop the counter back to the top of the list
+    # Loop the second and minute counters back to the top of the list
     if second_counter == num_of_points:
         second_counter = 0
+        minute_counter += 1
+        if minute_counter == num_of_points:
+            minute_counter = 0
 
     # Execute once per second
-    sleep(1)
+    sleep(.05)
 
 
 pgzrun.go()

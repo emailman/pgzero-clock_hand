@@ -82,12 +82,13 @@ def update():
     second_counter += 1
 
     # Handle the second and minute counters
-    # Time for the next minute?
+    # Time to reset the second counter
+    # and move to the next minute?
     if second_counter == num_of_points:
         second_counter = 0
         minute_counter += 1
 
-        # Time for the next second
+        # Time to reset the minute counter?
         if minute_counter == num_of_points:
             minute_counter = 0
 

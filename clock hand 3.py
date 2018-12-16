@@ -6,7 +6,7 @@ import pgzrun
 """
 Show the second hand of a clock advancing one tic each second,
 a minute hand advancing one tic each minute, and an hour hand
-advancing 1/2 tic each minute.
+advancing 1 tic every other minute.
 
 Display the number of hours, minutes and seconds as text in the window.
 """
@@ -60,9 +60,9 @@ for angle in range(90, -270, -6):
 num_of_tics = len(end_points_tic)
 print(num_of_tics)
 
-# Divide the circle into 120 pieces (360 / 3)
+# Divide the circle into 360 pieces
 # for the hour hand
-for angle in range(90, -270, -3):
+for angle in range(90, -270, -1):
     # A little trig goes a long way to find the end point
     x = cos(angle * pi / 180) * hour_hand_length
     y = sin(angle * pi / 180) * hour_hand_length
@@ -75,6 +75,7 @@ for angle in range(90, -270, -3):
 
 num_of_hour_tics = len(end_points_hour)
 print(num_of_hour_tics)
+
 
 def draw():
     # Draw a white hub
@@ -100,9 +101,9 @@ def update():
     screen.draw.line(offset(center),
                      offset(end_points_hour[hour_counter]), hour_hand_color)
 
-    # Update the display of the number of minutes and seconds
-    time_display = '{:02d} : {:02d} : {:02d}'.format(hour_counter, minute_counter, second_counter)
-    screen.draw.text(time_display, (WIDTH / 2 - 30, 10))
+    # Update the display of the number of hours, minutes and seconds
+    time_display = '{:02d} : {:02d} : {:02d}'.format(hour_counter // 30, minute_counter, second_counter)
+    screen.draw.text(time_display, (WIDTH / 2 - 40, 10))
 
     # Tic
     second_counter += 1
@@ -114,14 +115,18 @@ def update():
     if second_counter == num_of_tics:
         second_counter = 0
         minute_counter += 1
-        hour_counter += 1
+        if minute_counter % 2 == 0:
+            hour_counter += 1
+            # Time to wrap the hour counter?
+            if hour_counter == num_of_hour_tics:
+                hour_counter = 0
 
         # Time to wrap the minuter counter?
         if minute_counter == num_of_tics:
             minute_counter = 0
 
     # Execute once per second
-    # sleep(1)
+    sleep(1)
 
 
 pgzrun.go()

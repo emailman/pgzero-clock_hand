@@ -73,7 +73,7 @@ def update():
         counter = 0
 
     # Slow it down to execute once per second
-    sleep(1)
+    sleep(.1)
 
 
 pgzrun.go()

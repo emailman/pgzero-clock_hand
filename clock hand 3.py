@@ -126,7 +126,7 @@ def update():
             minute_counter = 0
 
     # Execute once per second
-    sleep(1)
+    sleep(.1)
 
 
 pgzrun.go()
